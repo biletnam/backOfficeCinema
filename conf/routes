@@ -1,0 +1,16 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /cinemaBackOffice                  controllers.Application.movies()
+GET     /cinemaBackOffice                  controllers.Application.ticketOptions()
+POST    /cinemaBackOffice                  controllers.Application.newMovie()
+POST    /cinemaBackOffice                  controllers.Application.newTicketOption()
+POST    /cinemaBackOffice/:id/delete       controllers.Application.deleteMovie(id: String)
+POST    /cinemaBackOffice/:id/delete       controllers.Application.deleteTicketOption(id: String)

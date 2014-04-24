@@ -1,0 +1,69 @@
+@(movies: List[Movie],
+  movieForm: Form[Movie],
+  ticketOptions: List[TicketOption],
+  ticketOptionForm: Form[TicketOption]
+)
+
+@import helper._
+
+@main("Cinema Back Office") {
+    
+<h1>Cinema Admin Page</h1>
+
+<div id="body">
+
+    <div id="movies">
+<h2>@movies.size() movie(s)</h2>
+    
+    <ul>
+        @for(movie <- movies) {
+            <li>
+                @movie.label
+                
+                @form(routes.Application.deleteMovie(movie.id)) {
+                    <input type="submit" value="Delete">
+                }
+            </li>
+        }
+    </ul>
+    
+    <h2>Add a new movie</h2>
+    
+    @form(routes.Application.newMovie()) {
+        
+        @inputText(movieForm("label"))
+        
+        <input type="submit" value="Create">
+        
+    }
+</div>
+
+    <div id="ticketoptions">
+    <h2>@ticketOptions.size() ticket(s)</h2>
+
+    <ul>
+        @for(ticketOption <- ticketOptions) {
+        <li>
+            @ticketOption.label
+
+            @form(routes.Application.deleteTicketOption(ticketOption.id)) {
+            <input type="submit" value="Delete">
+            }
+        </li>
+        }
+    </ul>
+
+    <h2>Add a new ticket type</h2>
+
+    @form(routes.Application.newTicketOption()) {
+
+    @inputText(ticketOptionForm("label"))
+
+    <input type="submit" value="Create">
+
+    }
+</div>
+
+</div>
+    
+}
